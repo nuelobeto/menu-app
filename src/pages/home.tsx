@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import { CategoryType, MenuGroupType, MenuItemType } from "@/types";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { MenuItemDetail } from "@/components/common/menu-item-detail";
 
 function isDefined<T>(value: T | undefined): value is T {
 	return value !== undefined;
@@ -33,9 +35,16 @@ export default function Home() {
 		},
 	};
 
+	useEffect(() => {
+		const scrollToTop = () => {
+			window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+		};
+		scrollToTop();
+	}, []);
+
 	return (
 		<AppLayout>
-			<section className="w-full flex flex-col gap-3 pb-12">
+			<section className="w-full flex flex-col gap-3 pt-4">
 				<motion.div
 					variants={container}
 					initial="hidden"
@@ -86,6 +95,12 @@ export default function Home() {
 const Category = ({ category }: { category: CategoryType }) => {
 	const navigate = useNavigate();
 
+	const handleNavigate = (url: string) => {
+		setTimeout(() => {
+			navigate(url);
+		}, 200);
+	};
+
 	const item = {
 		hidden: { y: 20, opacity: 0 },
 		visible: {
@@ -104,7 +119,7 @@ const Category = ({ category }: { category: CategoryType }) => {
 				"grow px-5 py-3 rounded-lg flex flex-col gap-1.5 items-center justify-center border",
 				category.className
 			)}
-			onClick={() => navigate(category.url)}>
+			onClick={() => handleNavigate(category.url)}>
 			<div className="h-12 w-12 flex items-center justify-center">
 				<img src={category.image} alt="" width={48} height={48} />
 			</div>
@@ -124,15 +139,19 @@ const MenuItem = ({ item }: { item: MenuItemType }) => {
 	}
 
 	return (
-		<motion.button
-			whileHover={{ scale: 1.03 }}
-			whileTap={{ scale: 0.9 }}
-			transition={{ type: "spring", stiffness: 400, damping: 10 }}
-			className="min-w-[180px] flex flex-col gap-3 border border-neutral-200 rounded-lg p-3">
-			<h3 className="font-medium text-sm text-neutral-800">
-				{truncateString(item.item_name)}
-			</h3>
-			<p className="font-medium text-sm text-neutral-500">{item.item_amount}</p>
-		</motion.button>
+		<MenuItemDetail item={item}>
+			<motion.button
+				whileHover={{ scale: 1.03 }}
+				whileTap={{ scale: 0.9 }}
+				transition={{ type: "spring", stiffness: 400, damping: 10 }}
+				className="min-w-[180px] flex flex-col gap-3 border border-neutral-200 rounded-lg p-3">
+				<h3 className="font-medium text-sm text-neutral-800">
+					{truncateString(item.item_name)}
+				</h3>
+				<p className="font-medium text-sm text-neutral-500">
+					${item.item_amount}
+				</p>
+			</motion.button>
+		</MenuItemDetail>
 	);
 };

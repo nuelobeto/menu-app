@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { ArrowLeftIcon, MenuIcon } from "../ui/icons";
+import { ROUTES } from "@/router/routes";
 
 type Props = {
 	goBack?: boolean;
@@ -19,7 +20,7 @@ export const Navbar = ({ goBack, title }: Props) => {
 							size="icon-sm"
 							variant="secondary"
 							className="rounded-full"
-							onClick={() => navigate(-1)}>
+							onClick={() => navigate(ROUTES.home)}>
 							<ArrowLeftIcon />
 						</Button>
 					)}

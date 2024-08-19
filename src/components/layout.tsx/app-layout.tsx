@@ -1,5 +1,5 @@
+import { Search } from "../common/Search";
 import { Navbar } from "../common/navbar";
-import { Search } from "../common/search";
 
 type Props = {
 	goBack?: boolean;
@@ -15,7 +15,7 @@ export const AppLayout = ({ goBack, children, title }: Props) => {
 				<Search />
 			</header>
 
-			<main className="min-h-[calc(100vh-136px)]">{children}</main>
+			<main className="min-h-[calc(100vh-136px)] pb-12">{children}</main>
 		</div>
 	);
 };

@@ -1,10 +1,31 @@
-import { useState } from "react";
-import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { SearchIcon } from "../ui/icons";
+import { SearchIcon, XIcon } from "../ui/icons";
+import { Input } from "../ui/input";
+import {
+	Drawer,
+	DrawerClose,
+	DrawerContent,
+	DrawerDescription,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerTrigger,
+} from "@/components/ui/drawer";
+import { MENU } from "@/constants";
+import { useState } from "react";
+import { MenuItemDetail } from "./menu-item-detail";
+import { motion } from "framer-motion";
 
 export const Search = () => {
 	const [query, setQuery] = useState("");
+
+	const filteredMenu = query
+		? MENU.filter(
+				(item) =>
+					item.item_subcategory.toLowerCase().includes(query.toLowerCase()) ||
+					item.item_name.toLowerCase().includes(query.toLowerCase()) ||
+					item.item_description.toLowerCase().includes(query.toLowerCase())
+		  )
+		: [];
 
 	return (
 		<div className="w-full px-5 py-4 flex items-center gap-2.5">
@@ -15,9 +36,51 @@ export const Search = () => {
 				onChange={(e) => setQuery(e.target.value)}
 				className="flex-1"
 			/>
-			<Button size="icon">
-				<SearchIcon />
-			</Button>
+
+			<Drawer>
+				<DrawerTrigger asChild>
+					<Button size="icon">
+						<SearchIcon />
+					</Button>
+				</DrawerTrigger>
+				<DrawerContent className="px-5 pt-14 pb-8 h-full rounded-none">
+					<DrawerHeader className="px-0">
+						<DrawerTitle className="font-semibold text-xl text-neutral-800 text-left">
+							Result ({filteredMenu.length})
+						</DrawerTitle>
+						<DrawerDescription hidden></DrawerDescription>
+					</DrawerHeader>
+
+					<div className="flex flex-col gap-2.5 h-full overflow-auto">
+						{filteredMenu.map((item, index) => (
+							<MenuItemDetail key={index} item={item}>
+								<motion.button
+									whileTap={{ scale: 0.7 }}
+									transition={{ type: "spring", stiffness: 400, damping: 17 }}
+									className="p-4 rounded-lg border border-neutral-200 flex flex-col gap-2">
+									<div className="flex items-center justify-between w-full">
+										<h2 className="font-bold text-base text-neutral-800">
+											{item.item_name}
+										</h2>
+										<p className="font-bold text-base text-neutral-800">
+											${item.item_amount}
+										</p>
+									</div>
+									<p className="max-w-[300px] text-sm text-neutral-500 text-left">
+										{item.item_description}
+									</p>
+								</motion.button>
+							</MenuItemDetail>
+						))}
+					</div>
+
+					<DrawerClose asChild className="absolute top-4 right-5">
+						<Button size="icon-sm" variant="secondary" className="rounded-full">
+							<XIcon />
+						</Button>
+					</DrawerClose>
+				</DrawerContent>
+			</Drawer>
 		</div>
 	);
 };
