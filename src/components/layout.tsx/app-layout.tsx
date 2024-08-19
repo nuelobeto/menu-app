@@ -9,7 +9,7 @@ type Props = {
 
 export const AppLayout = ({ goBack, children, title }: Props) => {
 	return (
-		<div className="w-full max-w-[448px] h-screen bg-white mx-auto">
+		<div className="w-full max-w-[448px] bg-white mx-auto">
 			<header>
 				<Navbar goBack={goBack} title={title} />
 				<Search />
