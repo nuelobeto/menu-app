@@ -11,7 +11,7 @@ export const Navbar = ({ goBack, title }: Props) => {
 	const navigate = useNavigate();
 
 	return (
-		<nav className="w-full h-16 relative">
+		<nav className="w-full h-16">
 			<div className="w-full h-full flex items-center justify-between px-5">
 				<div className="flex items-center gap-2.5">
 					{goBack && (
