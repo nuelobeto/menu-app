@@ -1,4 +1,4 @@
-import { Search } from "../common/Search";
+import { Search } from "../common/search";
 import { Navbar } from "../common/navbar";
 
 type Props = {
