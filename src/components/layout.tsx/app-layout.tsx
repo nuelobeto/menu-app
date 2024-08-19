@@ -15,7 +15,7 @@ export const AppLayout = ({ goBack, children, title }: Props) => {
 				<Search />
 			</header>
 
-			<main className="h-[calc(100vh-136px)] overflow-auto hide-scroll pb-24">
+			<main className="h-[calc(100vh-136px)] overflow-auto hide-scroll">
 				{children}
 			</main>
 		</div>
