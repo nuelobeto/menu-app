@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: #D4D4D4;
+}
+
 .hide-scroll::-webkit-scrollbar {
   display: none;
 }
