@@ -35,7 +35,7 @@ export default function Home() {
 
 	return (
 		<AppLayout>
-			<section className="w-full flex flex-col gap-3">
+			<section className="w-full flex flex-col gap-3 pb-12">
 				<motion.div
 					variants={container}
 					initial="hidden"
@@ -70,7 +70,7 @@ export default function Home() {
 								{group.label}
 							</h2>
 
-							<div className="flex gap-2.5 overflow-auto hide-scroll px-5">
+							<div className="flex gap-2.5 overflow-auto hide-scroll px-5 py-1">
 								{group.menu.map((item, index) => (
 									<MenuItem key={index} item={item} />
 								))}
