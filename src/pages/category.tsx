@@ -19,13 +19,7 @@ export default function Category() {
 		<AppLayout goBack title={title}>
 			<SubcategoryNavbar />
 
-			<section className="px-5 py-4">
-				<div className="h-[500px] bg-black"></div>
-			</section>
-
-			<section className="px-5 py-4">
-				<div className="h-[500px] bg-red-500"></div>
-			</section>
+			<section className="px-5 py-4"></section>
 		</AppLayout>
 	);
 }
