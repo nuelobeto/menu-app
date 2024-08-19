@@ -10,14 +10,12 @@ type Props = {
 export const AppLayout = ({ goBack, children, title }: Props) => {
 	return (
 		<div className="w-full max-w-[448px] bg-white mx-auto">
-			<header>
+			<header className="sticky top-0 bg-white">
 				<Navbar goBack={goBack} title={title} />
 				<Search />
 			</header>
 
-			<main className="h-[calc(100dvh-136px)] overflow-auto hide-scroll">
-				{children}
-			</main>
+			<main className="min-h-[calc(100vh-136px)]">{children}</main>
 		</div>
 	);
 };
