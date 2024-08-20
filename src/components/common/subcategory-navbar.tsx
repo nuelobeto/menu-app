@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
-import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 type Props = {
 	links: {
@@ -15,7 +15,7 @@ export const SubcategoryNavbar = ({ links }: Props) => {
 		if (!hash) {
 			window.location.hash = links[0].url;
 		}
-	}, [hash, links]);
+	});
 
 	return (
 		<nav className="sticky top-[136px] z-50">

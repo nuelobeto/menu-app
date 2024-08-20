@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MenuItemDetail } from "@/components/common/menu-item-detail";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 export default function Category() {
 	const params = useParams();
@@ -27,36 +27,6 @@ export default function Category() {
 		};
 	});
 	const sectionRefs = useRef<HTMLElement[]>([]);
-
-	const handleIntersection: IntersectionObserverCallback = (entries) => {
-		entries.forEach((entry) => {
-			if (entry.isIntersecting) {
-				const id = entry.target.id;
-				if (id) {
-					// setActiveLink(id);
-					window.location.hash = `#${id}`;
-				}
-			}
-		});
-	};
-
-	useEffect(() => {
-		const options: IntersectionObserverInit = {
-			root: null,
-			rootMargin: "0px",
-			threshold: 0.8,
-		};
-
-		const observer = new IntersectionObserver(handleIntersection, options);
-
-		sectionRefs.current.forEach((section) => {
-			if (section) observer.observe(section);
-		});
-
-		return () => {
-			observer.disconnect();
-		};
-	}, []);
 
 	if (slug === "food") {
 		title = "Food";
