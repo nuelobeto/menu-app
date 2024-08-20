@@ -144,7 +144,7 @@ const MenuItem = ({ item }: { item: MenuItemType }) => {
 				whileHover={{ scale: 1.03 }}
 				whileTap={{ scale: 0.9 }}
 				transition={{ type: "spring", stiffness: 400, damping: 10 }}
-				className="min-w-[180px] flex flex-col gap-3 border border-neutral-200 rounded-lg p-3">
+				className="min-w-[180px] flex flex-col gap-3 border border-neutral-200 rounded-lg p-3 bg-white/80">
 				<h3 className="font-medium text-sm text-neutral-800">
 					{truncateString(item.item_name)}
 				</h3>

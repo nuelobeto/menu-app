@@ -97,7 +97,7 @@ export default function Category() {
 								<motion.button
 									whileTap={{ scale: 0.9 }}
 									transition={{ type: "spring", stiffness: 400, damping: 17 }}
-									className="p-4 rounded-lg border border-neutral-200 flex flex-col gap-2">
+									className="p-4 rounded-lg border border-neutral-200 flex flex-col gap-2 bg-white/80">
 									<div className="flex items-center justify-between w-full">
 										<h2 className="font-bold text-base text-neutral-800">
 											{item.item_name}
