@@ -1,18 +1,19 @@
 import { SubcategoryNavbar } from "@/components/common/subcategory-navbar";
 import { AppLayout } from "@/components/layout.tsx/app-layout";
-import { MENU } from "@/constants";
 import { turnStringToLink } from "@/helpers";
 import { cn } from "@/lib/utils";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MenuItemDetail } from "@/components/common/menu-item-detail";
-import { useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import useStore from "@/store/useStore";
 
 export default function Category() {
+	const { setActiveHash, menu } = useStore();
 	const params = useParams();
 	const slug = params.slug;
 	let title: string;
-	const category = MENU.filter((item) => item.item_category === slug);
+	const category = menu.filter((item) => item.item_category === slug);
 	const subCategoryHeadings = [
 		...new Set(category.map((item) => item.item_subcategory)),
 	];
@@ -20,13 +21,16 @@ export default function Category() {
 		category.filter((y) => y.item_subcategory === x)
 	);
 
+	console.log({ menu });
+
 	const links = subCategoryHeadings.map((item) => {
 		return {
 			label: item,
-			url: `#${turnStringToLink(item)}`,
+			url: turnStringToLink(item),
 		};
 	});
-	const sectionRefs = useRef<HTMLElement[]>([]);
+
+	const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
 	if (slug === "food") {
 		title = "Food";
@@ -36,15 +40,47 @@ export default function Category() {
 		title = "Food";
 	}
 
+	const handleIntersection = useCallback<IntersectionObserverCallback>(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const id = entry.target.getAttribute("id");
+					if (id) {
+						setActiveHash(id);
+					}
+				}
+			});
+		},
+		[setActiveHash]
+	);
+
+	useEffect(() => {
+		const options: IntersectionObserverInit = {
+			root: null,
+			rootMargin: "0px",
+			threshold: 0.6,
+		};
+
+		const observer = new IntersectionObserver(handleIntersection, options);
+
+		sectionRefs.current.forEach((section) => {
+			if (section) {
+				observer.observe(section);
+			}
+		});
+
+		return () => {
+			observer.disconnect();
+		};
+	}, [handleIntersection]);
+
 	return (
 		<AppLayout goBack title={title}>
 			<SubcategoryNavbar links={links} />
 
 			{subCategories.map((subcategory, index) => (
 				<motion.section
-					ref={(el) => {
-						if (el) sectionRefs.current[index] = el;
-					}}
+					ref={(el) => (sectionRefs.current[index] = el)}
 					key={index}
 					id={turnStringToLink(subcategory[0].item_subcategory)}
 					initial={{ y: -100, opacity: 0 }}
@@ -69,7 +105,7 @@ export default function Category() {
 									transition={{ type: "spring", stiffness: 400, damping: 17 }}
 									className="p-4 rounded-lg border border-neutral-200 flex flex-col gap-2 bg-white/80">
 									<div className="flex items-center justify-between w-full">
-										<h2 className="font-bold text-base text-neutral-800">
+										<h2 className="font-bold text-base text-neutral-800 text-left">
 											{item.item_name}
 										</h2>
 										<p className="font-bold text-base text-neutral-800">

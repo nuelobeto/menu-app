@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { ArrowLeftIcon, MenuIcon } from "../ui/icons";
 import { ROUTES } from "@/router/routes";
+import { Menubar } from "./menubar";
 
 type Props = {
 	goBack?: boolean;
@@ -26,9 +27,9 @@ export const Navbar = ({ goBack, title }: Props) => {
 					)}
 					<h1 className="text-xl font-bold">{title ? title : "Logo"}</h1>
 				</div>
-				<button>
+				<Menubar>
 					<MenuIcon />
-				</button>
+				</Menubar>
 			</div>
 		</nav>
 	);
