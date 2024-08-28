@@ -18,7 +18,7 @@ export const AppLayout = ({ goBack, title, children }: Props) => {
 		: "bg-[url('/images/bg.png')]";
 
 	return (
-		<div className="w-full max-w-[448px] mx-auto relative">
+		<div className="w-full max-w-[448px] mx-auto relative bg-neutral-950">
 			<div
 				className={`fixed top-0 left-[50%] translate-x-[-50%] w-full max-w-[448px] h-screen pointer-events-none ${bg} bg-no-repeat bg-center bg-cover`}></div>
 			<header className="sticky top-0 left-0 w-full z-50 bg-neutral-950">

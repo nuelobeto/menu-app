@@ -51,7 +51,7 @@ export const SearchIcon = ({
 }: React.SVGAttributes<SVGSVGElement>) => {
 	return (
 		<svg
-			className={cn("stroke-emerald-50", className)}
+			className={cn("stroke-emerald-50 fill-none", className)}
 			{...props}
 			width="16"
 			height="16"

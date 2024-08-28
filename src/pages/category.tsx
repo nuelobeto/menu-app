@@ -12,8 +12,9 @@ export default function Category() {
 	const { setActiveHash, menu } = useStore();
 	const params = useParams();
 	const slug = params.slug;
-	let title: string;
-	const category = menu.filter((item) => item.item_category === slug);
+	const category = menu.filter(
+		(item) => turnStringToLink(item.item_category) === slug
+	);
 	const subCategoryHeadings = [
 		...new Set(category.map((item) => item.item_subcategory)),
 	];
@@ -31,14 +32,6 @@ export default function Category() {
 	});
 
 	const sectionRefs = useRef<(HTMLElement | null)[]>([]);
-
-	if (slug === "food") {
-		title = "Food";
-	} else if (slug === "drinks") {
-		title = "Drinks";
-	} else {
-		title = "Food";
-	}
 
 	const handleIntersection = useCallback<IntersectionObserverCallback>(
 		(entries) => {
@@ -75,7 +68,7 @@ export default function Category() {
 	}, [handleIntersection]);
 
 	return (
-		<AppLayout goBack title={title}>
+		<AppLayout goBack>
 			<SubcategoryNavbar links={links} />
 
 			{subCategories.map((subcategory, index) => (

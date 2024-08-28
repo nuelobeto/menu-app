@@ -3,12 +3,10 @@ import { CategoryType, MenuItemType } from "@/types";
 
 export const CATEGORIES: CategoryType[] = [
 	{
-		image: "/images/food.png",
 		label: "Food",
 		url: ROUTES.category("food"),
 	},
 	{
-		image: "/images/drink.png",
 		label: "Drinks",
 		url: ROUTES.category("drinks"),
 	},
