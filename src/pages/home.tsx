@@ -1,27 +1,27 @@
 import { AppLayout } from "@/components/layout.tsx/app-layout";
-import { CATEGORIES, MENU } from "@/constants";
+import { CATEGORIES } from "@/constants";
 import { cn } from "@/lib/utils";
-import { CategoryType, MenuGroupType, MenuItemType } from "@/types";
+import { CategoryType } from "@/types";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-import { MenuItemDetail } from "@/components/common/menu-item-detail";
+// import { MenuItemDetail } from "@/components/common/menu-item-detail";
 
-function isDefined<T>(value: T | undefined): value is T {
-	return value !== undefined;
-}
+// function isDefined<T>(value: T | undefined): value is T {
+// 	return value !== undefined;
+// }
 
 export default function Home() {
-	const menuGroups = (): MenuGroupType[] => {
-		const tags = Array.from(new Set(MENU.map((m) => m.tag))).filter(isDefined);
+	// const menuGroups = (): MenuGroupType[] => {
+	// 	const tags = Array.from(new Set(MENU.map((m) => m.tag))).filter(isDefined);
 
-		const menuGroups: MenuGroupType[] = tags.map((tag) => ({
-			label: tag,
-			menu: MENU.filter((item) => item.tag === tag),
-		}));
+	// 	const menuGroups: MenuGroupType[] = tags.map((tag) => ({
+	// 		label: tag,
+	// 		menu: MENU.filter((item) => item.tag === tag),
+	// 	}));
 
-		return menuGroups;
-	};
+	// 	return menuGroups;
+	// };
 
 	const container = {
 		hidden: { opacity: 1, scale: 0 },
@@ -49,13 +49,13 @@ export default function Home() {
 					variants={container}
 					initial="hidden"
 					animate="visible"
-					className="px-5 py-4 flex gap-3">
+					className="px-5 py-4 flex flex-col gap-3">
 					{CATEGORIES.map((category, index) => (
 						<Category key={index} category={category} />
 					))}
 				</motion.div>
 
-				<motion.div
+				{/* <motion.div
 					initial={{ opacity: 0 }}
 					whileInView={{ opacity: 1 }}
 					viewport={{ once: true }}
@@ -86,7 +86,7 @@ export default function Home() {
 							</div>
 						</motion.div>
 					))}
-				</motion.div>
+				</motion.div> */}
 			</section>
 		</AppLayout>
 	);
@@ -116,42 +116,41 @@ const Category = ({ category }: { category: CategoryType }) => {
 			whileTap={{ scale: 0.9 }}
 			transition={{ type: "spring", stiffness: 400, damping: 10 }}
 			className={cn(
-				"grow px-5 py-3 rounded-lg flex flex-col gap-1.5 items-center justify-center border",
-				category.className
+				"grow px-5 py-5 rounded-lg flex gap-3 items-center justify-center border border-emerald-800 bg-emerald-600 hover:bg-emerald-800/90"
 			)}
 			onClick={() => handleNavigate(category.url)}>
-			<div className="h-12 w-12 flex items-center justify-center">
+			<div className="h-8 w-8 flex items-center justify-center">
 				<img src={category.image} alt="" width={48} height={48} />
 			</div>
 
-			<p className="font-semibold text-xs text-neutral-800">{category.label}</p>
+			<p className="font-semibold text-lg text-neutral-50">{category.label}</p>
 		</motion.button>
 	);
 };
 
-const MenuItem = ({ item }: { item: MenuItemType }) => {
-	function truncateString(input: string): string {
-		const limit = 16;
-		if (input.length > limit) {
-			return input.substring(0, limit) + "...";
-		}
-		return input;
-	}
+// const MenuItem = ({ item }: { item: MenuItemType }) => {
+// 	function truncateString(input: string): string {
+// 		const limit = 16;
+// 		if (input.length > limit) {
+// 			return input.substring(0, limit) + "...";
+// 		}
+// 		return input;
+// 	}
 
-	return (
-		<MenuItemDetail item={item}>
-			<motion.button
-				whileHover={{ scale: 1.03 }}
-				whileTap={{ scale: 0.9 }}
-				transition={{ type: "spring", stiffness: 400, damping: 10 }}
-				className="min-w-[180px] flex flex-col gap-3 border border-neutral-200 rounded-lg p-3 bg-white/80">
-				<h3 className="font-medium text-sm text-neutral-800">
-					{truncateString(item.item_name)}
-				</h3>
-				<p className="font-medium text-sm text-neutral-500">
-					${item.item_amount}
-				</p>
-			</motion.button>
-		</MenuItemDetail>
-	);
-};
+// 	return (
+// 		<MenuItemDetail item={item}>
+// 			<motion.button
+// 				whileHover={{ scale: 1.03 }}
+// 				whileTap={{ scale: 0.9 }}
+// 				transition={{ type: "spring", stiffness: 400, damping: 10 }}
+// 				className="min-w-[180px] flex flex-col gap-3 border border-neutral-200 rounded-lg p-3 bg-white/80">
+// 				<h3 className="font-medium text-sm text-neutral-800">
+// 					{truncateString(item.item_name)}
+// 				</h3>
+// 				<p className="font-medium text-sm text-neutral-500">
+// 					${item.item_amount}
+// 				</p>
+// 			</motion.button>
+// 		</MenuItemDetail>
+// 	);
+// };

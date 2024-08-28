@@ -5,13 +5,11 @@ export const CATEGORIES: CategoryType[] = [
 	{
 		image: "/images/food.png",
 		label: "Food",
-		className: "border-emerald-200 bg-emerald-50 hover:bg-emerald-100/90",
 		url: ROUTES.category("Food"),
 	},
 	{
 		image: "/images/drink.png",
 		label: "Drinks",
-		className: "border-neutral-200 bg-neutral-50 hover:bg-neutral-100",
 		url: ROUTES.category("Drink"),
 	},
 ];

@@ -1,7 +1,6 @@
 export type CategoryType = {
 	image: string;
 	label: string;
-	className: string;
 	url: string;
 };
 

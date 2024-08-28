@@ -33,7 +33,7 @@ export const SubcategoryNavbar = ({ links }: Props) => {
 
 	return (
 		<nav className="sticky top-[136px] z-50">
-			<div className="w-full h-full flex items-center justify-between gap-2.5 px-5 pt-0 pb-4 overflow-auto hide-scroll bg-white">
+			<div className="w-full h-full flex items-center justify-between gap-2.5 px-5 pt-0 pb-4 overflow-auto hide-scroll bg-emerald-200">
 				{links.map((link, index) => (
 					<motion.a
 						id={`${link.url}-link`}
@@ -44,8 +44,8 @@ export const SubcategoryNavbar = ({ links }: Props) => {
 						className={cn(
 							"capitalize whitespace-nowrap h-8 p-2.5 rounded-lg border font-semibold text-xs text-neutral-500 flex items-center",
 							activeHash === link.url
-								? "bg-emerald-50 border-emerald-200"
-								: "border-neutral-200"
+								? "bg-emerald-600 border-emerald-500 text-white"
+								: "border-emerald-500"
 						)}
 						onClick={() => setActiveHash(link.url)}>
 						{link.label}
