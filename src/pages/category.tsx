@@ -93,7 +93,7 @@ export default function Category() {
 						damping: 10,
 					}}
 					className={cn("px-5 py-4 flex flex-col gap-3")}>
-					<div className="p-2.5 rounded-lg flex items-center justify-center font-semibold text-xs text-emerald-50 bg-emerald-900">
+					<div className="p-2.5 rounded-lg flex items-center justify-center font-semibold text-base text-emerald-50 bg-emerald-900">
 						{subcategory[0].item_subcategory}
 					</div>
 
@@ -103,18 +103,20 @@ export default function Category() {
 								<motion.button
 									whileTap={{ scale: 0.9 }}
 									transition={{ type: "spring", stiffness: 400, damping: 17 }}
-									className="p-4 rounded-lg border border-neutral-200 flex flex-col gap-2 bg-white/80">
+									className="p-4 rounded-lg border flex flex-col gap-2 border-neutral-700 bg-neutral-800 hover:bg-neutral-800/50">
 									<div className="flex items-center justify-between w-full">
-										<h2 className="font-bold text-base text-neutral-800 text-left">
+										<h2 className="font-medium text-base text-emerald-50 text-left">
 											{item.item_name}
 										</h2>
-										<p className="font-bold text-base text-neutral-800">
+										<p className="font-medium text-sm text-emerald-500">
 											${item.item_amount}
 										</p>
 									</div>
-									<p className="max-w-[300px] text-sm text-neutral-500 text-left">
-										{item.item_description}
-									</p>
+									{item.item_description && (
+										<p className="max-w-[300px] text-sm text-neutral-400 text-left">
+											{item.item_description}
+										</p>
+									)}
 								</motion.button>
 							</MenuItemDetail>
 						))}

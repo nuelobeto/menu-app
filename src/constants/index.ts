@@ -5,12 +5,12 @@ export const CATEGORIES: CategoryType[] = [
 	{
 		image: "/images/food.png",
 		label: "Food",
-		url: ROUTES.category("Food"),
+		url: ROUTES.category("food"),
 	},
 	{
 		image: "/images/drink.png",
 		label: "Drinks",
-		url: ROUTES.category("Drink"),
+		url: ROUTES.category("drinks"),
 	},
 ];
 

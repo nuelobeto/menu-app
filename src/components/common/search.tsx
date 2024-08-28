@@ -10,20 +10,21 @@ import {
 	DrawerTitle,
 	DrawerTrigger,
 } from "@/components/ui/drawer";
-import { MENU } from "@/constants";
 import { useState } from "react";
 import { MenuItemDetail } from "./menu-item-detail";
 import { motion } from "framer-motion";
+import useStore from "@/store/useStore";
 
 export const Search = () => {
+	const { menu } = useStore();
 	const [query, setQuery] = useState("");
 
 	const filteredMenu = query
-		? MENU.filter(
+		? menu.filter(
 				(item) =>
 					item.item_subcategory.toLowerCase().includes(query.toLowerCase()) ||
 					item.item_name.toLowerCase().includes(query.toLowerCase()) ||
-					item.item_description.toLowerCase().includes(query.toLowerCase())
+					item.item_description?.toLowerCase().includes(query.toLowerCase())
 		  )
 		: [];
 
@@ -45,7 +46,7 @@ export const Search = () => {
 				</DrawerTrigger>
 				<DrawerContent className="px-5 pt-14 pb-8 h-full rounded-none">
 					<DrawerHeader className="px-0">
-						<DrawerTitle className="font-semibold text-xl text-neutral-800 text-left">
+						<DrawerTitle className="font-semibold text-xl text-neutral-200 text-left">
 							Result ({filteredMenu.length})
 						</DrawerTitle>
 						<DrawerDescription hidden></DrawerDescription>
@@ -57,18 +58,20 @@ export const Search = () => {
 								<motion.button
 									whileTap={{ scale: 0.7 }}
 									transition={{ type: "spring", stiffness: 400, damping: 17 }}
-									className="p-4 rounded-lg border border-neutral-200 flex flex-col gap-2">
+									className="p-4 rounded-lg border flex flex-col gap-2 border-neutral-700 bg-neutral-800 hover:bg-neutral-800/50">
 									<div className="flex items-center justify-between w-full">
-										<h2 className="font-bold text-base text-neutral-800">
+										<h2 className="font-medium text-base text-emerald-50 text-left">
 											{item.item_name}
 										</h2>
-										<p className="font-bold text-base text-neutral-800">
+										<p className="font-medium text-sm text-emerald-500">
 											${item.item_amount}
 										</p>
 									</div>
-									<p className="max-w-[300px] text-sm text-neutral-500 text-left">
-										{item.item_description}
-									</p>
+									{item.item_description && (
+										<p className="max-w-[300px] text-sm text-neutral-500 text-left">
+											{item.item_description}
+										</p>
+									)}
 								</motion.button>
 							</MenuItemDetail>
 						))}
@@ -76,7 +79,7 @@ export const Search = () => {
 
 					<DrawerClose asChild className="absolute top-4 right-5">
 						<Button size="icon-sm" variant="secondary" className="rounded-full">
-							<XIcon />
+							<XIcon className="stroke-neutral-400" />
 						</Button>
 					</DrawerClose>
 				</DrawerContent>

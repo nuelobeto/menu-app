@@ -1,17 +1,27 @@
 import { Search } from "../common/search";
 import { Navbar } from "../common/navbar";
+import { useLocation } from "react-router-dom";
 
 type Props = {
 	goBack?: boolean;
-	children: React.ReactNode;
 	title?: string;
+	children: React.ReactNode;
 };
 
-export const AppLayout = ({ goBack, children, title }: Props) => {
+export const AppLayout = ({ goBack, title, children }: Props) => {
+	const { pathname } = useLocation();
+
+	const bg = pathname.includes("food")
+		? "bg-[url('/images/bg-food.png')]"
+		: pathname.includes("drinks")
+		? "bg-[url('/images/bg-drinks.png')]"
+		: "bg-[url('/images/bg.png')]";
+
 	return (
 		<div className="w-full max-w-[448px] mx-auto relative">
-			<div className="fixed top-0 left-[50%] translate-x-[-50%] w-full max-w-[448px] h-screen pointer-events-none bg-gradient-to-b from-emerald-200 from-10% via-emerald-100 via-30% to-emerald-50 to-90%"></div>
-			<header className="sticky top-0 left-0 w-full z-50 bg-emerald-200">
+			<div
+				className={`fixed top-0 left-[50%] translate-x-[-50%] w-full max-w-[448px] h-screen pointer-events-none ${bg} bg-no-repeat bg-center bg-cover`}></div>
+			<header className="sticky top-0 left-0 w-full z-50 bg-neutral-950">
 				<Navbar goBack={goBack} title={title} />
 				<Search />
 			</header>

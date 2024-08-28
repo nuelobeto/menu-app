@@ -37,7 +37,7 @@ const useStore = create<StoreState>((set) => ({
 				return {
 					id: item.id,
 					item_amount: item.item_amount,
-					item_category: capitalizeFirstLetter(item.item_category),
+					item_category: item.item_category,
 					item_description: item.item_description,
 					item_name: item.item_name,
 					item_subcategory: capitalizeFirstLetter(item.item_subcategory),

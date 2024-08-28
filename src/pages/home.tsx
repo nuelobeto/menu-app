@@ -116,14 +116,14 @@ const Category = ({ category }: { category: CategoryType }) => {
 			whileTap={{ scale: 0.9 }}
 			transition={{ type: "spring", stiffness: 400, damping: 10 }}
 			className={cn(
-				"grow px-5 py-5 rounded-lg flex gap-3 items-center justify-center border border-emerald-800 bg-emerald-600 hover:bg-emerald-800/90"
+				"grow px-5 py-5 rounded-lg flex gap-3 items-center justify-center border border-neutral-800 bg-neutral-900 hover:bg-neutral-900/50"
 			)}
 			onClick={() => handleNavigate(category.url)}>
 			<div className="h-8 w-8 flex items-center justify-center">
 				<img src={category.image} alt="" width={48} height={48} />
 			</div>
 
-			<p className="font-semibold text-lg text-neutral-50">{category.label}</p>
+			<p className="font-semibold text-lg text-emerald-100">{category.label}</p>
 		</motion.button>
 	);
 };

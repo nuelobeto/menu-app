@@ -23,19 +23,19 @@ export const MenuItemDetail = ({
 			<DrawerTrigger asChild>{children}</DrawerTrigger>
 			<DrawerContent className="px-5 pt-14 pb-8">
 				<DrawerHeader className="p-0 flex flex-col items-start">
-					<DrawerTitle className="font-semibold text-xl text-neutral-800">
+					<DrawerTitle className="font-semibold text-xl text-emerald-50">
 						{item.item_name}
 					</DrawerTitle>
-					<DrawerDescription className="text-base max-w-[350px] text-neutral-600 text-left">
+					<DrawerDescription className="text-base max-w-[350px] text-neutral-400 text-left">
 						{item.item_description}
 					</DrawerDescription>
-					<p className="font-semibold text-lg text-neutral-850">
+					<p className="font-semibold text-lg text-emerald-600">
 						${item.item_amount}
 					</p>
 				</DrawerHeader>
 				<DrawerClose asChild className="absolute top-4 right-5">
 					<Button size="icon-sm" variant="secondary" className="rounded-full">
-						<XIcon />
+						<XIcon className="stroke-neutral-400" />
 					</Button>
 				</DrawerClose>
 			</DrawerContent>

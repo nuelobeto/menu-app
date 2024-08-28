@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { ArrowLeftIcon, MenuIcon } from "../ui/icons";
 import { ROUTES } from "@/router/routes";
 import { Menubar } from "./menubar";
+import useStore from "@/store/useStore";
 
 type Props = {
 	goBack?: boolean;
@@ -10,6 +11,7 @@ type Props = {
 };
 
 export const Navbar = ({ goBack, title }: Props) => {
+	const { menu_details } = useStore();
 	const navigate = useNavigate();
 
 	return (
@@ -22,10 +24,12 @@ export const Navbar = ({ goBack, title }: Props) => {
 							variant="secondary"
 							className="rounded-full"
 							onClick={() => navigate(ROUTES.home)}>
-							<ArrowLeftIcon />
+							<ArrowLeftIcon className="stroke-neutral-400" />
 						</Button>
 					)}
-					<h1 className="text-xl font-bold">{title ? title : "Logo"}</h1>
+					<h1 className="text-2xl font-bold text-emerald-50">
+						{title ? title : menu_details?.menu_name}
+					</h1>
 				</div>
 				<Menubar>
 					<MenuIcon />
