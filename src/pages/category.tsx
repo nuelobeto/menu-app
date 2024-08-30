@@ -98,7 +98,7 @@ export default function Category() {
 									transition={{ type: "spring", stiffness: 400, damping: 17 }}
 									className="p-4 rounded-lg border flex flex-col gap-2 border-neutral-700 bg-neutral-800 hover:bg-neutral-800/50">
 									<div className="flex items-center justify-between w-full">
-										<h2 className="font-medium text-base text-emerald-50 text-left">
+										<h2 className="font-medium text-sm text-emerald-50 text-left">
 											{item.item_name}
 										</h2>
 										<p className="font-medium text-sm text-emerald-500">

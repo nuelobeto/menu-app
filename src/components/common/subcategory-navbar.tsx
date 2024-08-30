@@ -42,7 +42,7 @@ export const SubcategoryNavbar = ({ links }: Props) => {
 						whileTap={{ scale: 0.7 }}
 						transition={{ type: "spring", stiffness: 400, damping: 17 }}
 						className={cn(
-							"capitalize whitespace-nowrap h-8 p-2.5 rounded-lg border font-semibold text-xs text-neutral-500 flex items-center",
+							"capitalize whitespace-nowrap h-9 p-2.5 rounded-lg border font-semibold text-base text-neutral-500 flex items-center",
 							activeHash === link.url
 								? "bg-emerald-600 border-emerald-600 text-neutral-950"
 								: "border-emerald-600 text-emerald-600"
