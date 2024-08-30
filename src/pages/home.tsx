@@ -99,7 +99,7 @@ const Category = ({ category }: { category: CategoryType }) => {
 					className="w-full aspect-[1/1.5] block"
 				/>
 			</div>
-			<p className="font-semibold text-lg text-emerald-100 capitalize">
+			<p className="font-semibold text-sm text-emerald-100 capitalize">
 				{category.label}
 			</p>
 		</motion.button>
