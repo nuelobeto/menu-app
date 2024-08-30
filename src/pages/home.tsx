@@ -43,7 +43,7 @@ export default function Home() {
 					variants={container}
 					initial="hidden"
 					animate="visible"
-					className="px-5 py-4 flex flex-col gap-3">
+					className="px-5 py-4 grid grid-cols-2 gap-3">
 					{categories.map((category, index) => (
 						<Category key={index} category={category} />
 					))}
@@ -62,6 +62,18 @@ const Category = ({ category }: { category: CategoryType }) => {
 		}, 200);
 	};
 
+	const getImage = (category: string) => {
+		const image =
+			category === "drinks"
+				? "/images/drinks.jpeg"
+				: category === "mixers"
+				? "/images/mixers.jpeg"
+				: category === "smokes"
+				? "/images/smokes.jpeg"
+				: "/images/drinks.jpeg";
+		return image;
+	};
+
 	const item = {
 		hidden: { y: 20, opacity: 0 },
 		visible: {
@@ -77,10 +89,19 @@ const Category = ({ category }: { category: CategoryType }) => {
 			whileTap={{ scale: 0.9 }}
 			transition={{ type: "spring", stiffness: 400, damping: 10 }}
 			className={cn(
-				"grow px-5 py-4 rounded-lg flex gap-3 items-center border border-neutral-800 bg-neutral-900 hover:bg-neutral-900/50"
+				"grow p-2 rounded-lg flex flex-col gap-3 items-center border border-neutral-800 bg-neutral-900 hover:bg-neutral-900/50"
 			)}
 			onClick={() => handleNavigate(category.url)}>
-			<p className="font-semibold text-lg text-emerald-100">{category.label}</p>
+			<div className="w-full border border-neutral-700 rounded-lg overflow-clip shadow-md shadow-black/50">
+				<img
+					src={getImage(category.label)}
+					alt=""
+					className="w-full aspect-[1/1.5] block"
+				/>
+			</div>
+			<p className="font-semibold text-lg text-emerald-100 capitalize">
+				{category.label}
+			</p>
 		</motion.button>
 	);
 };

@@ -15,7 +15,7 @@ export const AppLayout = ({ goBack, title, children }: Props) => {
 		? "bg-[url('/images/bg-food.png')]"
 		: pathname.includes("drinks")
 		? "bg-[url('/images/bg-drinks.png')]"
-		: "bg-[url('/images/bg.png')]";
+		: "bg-[url('/images/bg-drinks.png')]";
 
 	return (
 		<div className="w-full max-w-[448px] mx-auto relative bg-neutral-950">
