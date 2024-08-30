@@ -102,7 +102,7 @@ export default function Category() {
 											{item.item_name}
 										</h2>
 										<p className="font-medium text-sm text-emerald-500">
-											${item.item_amount}
+											₦{item.item_amount}
 										</p>
 									</div>
 									{item.item_description && (

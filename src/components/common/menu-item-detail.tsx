@@ -30,7 +30,7 @@ export const MenuItemDetail = ({
 						{item.item_description}
 					</DrawerDescription>
 					<p className="font-semibold text-lg text-emerald-600">
-						${item.item_amount}
+						₦{item.item_amount}
 					</p>
 				</DrawerHeader>
 				<DrawerClose asChild className="absolute top-4 right-5">
