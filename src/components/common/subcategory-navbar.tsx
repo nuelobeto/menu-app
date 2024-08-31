@@ -12,11 +12,11 @@ type Props = {
 export const SubcategoryNavbar = ({ links }: Props) => {
 	const { activeHash, setActiveHash } = useStore();
 
-	// useEffect(() => {
-	// 	if (!activeHash) {
-	// 		setActiveHash(links[0].url);
-	// 	}
-	// }, [activeHash, links, setActiveHash]);
+	useEffect(() => {
+		if (!activeHash) {
+			setActiveHash(links[0].url);
+		}
+	}, [activeHash, links, setActiveHash]);
 
 	useEffect(() => {
 		const autoScroll = () => {

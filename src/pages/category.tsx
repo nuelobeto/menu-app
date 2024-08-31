@@ -22,8 +22,6 @@ export default function Category() {
 		category.filter((y) => y.item_subcategory === x)
 	);
 
-	console.log({ menu });
-
 	const links = subCategoryHeadings.map((item) => {
 		return {
 			label: item,
@@ -40,6 +38,7 @@ export default function Category() {
 					const id = entry.target.getAttribute("id");
 					if (id) {
 						setActiveHash(id);
+						console.log(id);
 					}
 				}
 			});
@@ -51,7 +50,7 @@ export default function Category() {
 		const options: IntersectionObserverInit = {
 			root: null,
 			rootMargin: "0px",
-			threshold: 0.6,
+			threshold: 1,
 		};
 
 		const observer = new IntersectionObserver(handleIntersection, options);
