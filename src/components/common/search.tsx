@@ -35,12 +35,12 @@ export const Search = () => {
 				placeholder="Search"
 				value={query}
 				onChange={(e) => setQuery(e.target.value)}
-				className="flex-1"
+				className="flex-1 h-12"
 			/>
 
 			<Drawer>
 				<DrawerTrigger asChild>
-					<Button size="icon">
+					<Button size="icon" className="w-12 h-12">
 						<SearchIcon />
 					</Button>
 				</DrawerTrigger>

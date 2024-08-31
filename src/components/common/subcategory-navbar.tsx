@@ -32,7 +32,7 @@ export const SubcategoryNavbar = ({ links }: Props) => {
 	}, [activeHash]);
 
 	return (
-		<nav className="sticky top-[136px] z-50">
+		<nav className="sticky top-[144px] z-50">
 			<div className="w-full h-full flex items-center justify-between gap-2.5 px-5 pt-0 pb-4 overflow-auto hide-scroll bg-neutral-950">
 				{links.map((link, index) => (
 					<motion.a
