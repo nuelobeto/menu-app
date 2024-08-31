@@ -38,7 +38,6 @@ export default function Category() {
 					const id = entry.target.getAttribute("id");
 					if (id) {
 						setActiveHash(id);
-						console.log(id);
 					}
 				}
 			});
