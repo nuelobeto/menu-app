@@ -14,22 +14,29 @@ export const SubcategoryNavbar = ({ links }: Props) => {
 
 	useEffect(() => {
 		if (!activeHash) {
-			setActiveHash(links[0].url);
+			if (links.length > 0) {
+				setActiveHash(links[0].url);
+				console.log(links[0].url);
+			}
 		}
 	}, [activeHash, links, setActiveHash]);
 
-	useEffect(() => {
-		const autoScroll = () => {
-			setTimeout(() => {
-				const activeLink = document.getElementById(`${activeHash}-link`);
-				if (activeLink) {
-					activeLink.scrollIntoView({ behavior: "smooth", inline: "center" });
-				}
-			}, 1000);
-		};
+	// useEffect(() => {
+	// 	const autoScroll = () => {
+	// 		setTimeout(() => {
+	// 			const activeLinkElement = document.getElementById(`${activeHash}-link`);
+	// 			if (activeLinkElement) {
+	// 				activeLinkElement.scrollIntoView({
+	// 					behavior: "smooth",
+	// 					inline: "center",
+	// 				});
+	// 				console.log(activeLinkElement);
+	// 			}
+	// 		}, 500);
+	// 	};
 
-		autoScroll();
-	}, [activeHash]);
+	// 	autoScroll();
+	// }, [activeHash]);
 
 	return (
 		<nav className="sticky top-[144px] z-50">
