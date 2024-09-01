@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import useStore from "@/store/useStore";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 type Props = {
 	links: {
@@ -12,31 +12,33 @@ type Props = {
 export const SubcategoryNavbar = ({ links }: Props) => {
 	const { activeHash, setActiveHash } = useStore();
 
-	useEffect(() => {
-		if (!activeHash) {
-			if (links.length > 0) {
-				setActiveHash(links[0].url);
-				console.log(links[0].url);
-			}
-		}
-	}, [activeHash, links, setActiveHash]);
+	// useEffect(() => {
+	// 	// console.log({ activeHash });
 
-	useEffect(() => {
-		const autoScroll = () => {
-			setTimeout(() => {
-				const activeLinkElement = document.getElementById(`${activeHash}-link`);
-				if (activeLinkElement) {
-					activeLinkElement.scrollIntoView({
-						behavior: "smooth",
-						inline: "center",
-					});
-					console.log(activeLinkElement);
-				}
-			}, 500);
-		};
+	// 	if (!activeHash) {
+	// 		if (links.length > 0) {
+	// 			setActiveHash(links[0].url);
+	// 			console.log(links[0].url);
+	// 		}
+	// 	}
+	// }, [activeHash, links, setActiveHash]);
 
-		autoScroll();
-	}, [activeHash]);
+	// useEffect(() => {
+	// 	const autoScroll = () => {
+	// 		setTimeout(() => {
+	// 			const activeLinkElement = document.getElementById(`${activeHash}-link`);
+	// 			if (activeLinkElement) {
+	// 				activeLinkElement.scrollIntoView({
+	// 					behavior: "smooth",
+	// 					inline: "center",
+	// 				});
+	// 				// console.log(activeLinkElement);
+	// 			}
+	// 		}, 500);
+	// 	};
+
+	// 	autoScroll();
+	// }, [activeHash]);
 
 	return (
 		<nav className="sticky top-[144px] z-50">

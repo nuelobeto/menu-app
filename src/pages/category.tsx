@@ -5,11 +5,11 @@ import { cn } from "@/lib/utils";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MenuItemDetail } from "@/components/common/menu-item-detail";
-import { useCallback, useEffect, useRef } from "react";
+import {  useRef } from "react";
 import useStore from "@/store/useStore";
 
 export default function Category() {
-	const { setActiveHash, menu } = useStore();
+	const {  menu } = useStore();
 	const params = useParams();
 	const slug = params.slug;
 	const category = menu.filter(
@@ -21,6 +21,8 @@ export default function Category() {
 	const subCategories = subCategoryHeadings.map((x) =>
 		category.filter((y) => y.item_subcategory === x)
 	);
+	console.log(subCategories);
+	
 
 	const links = subCategoryHeadings.map((item) => {
 		return {
@@ -31,39 +33,39 @@ export default function Category() {
 
 	const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
-	const handleIntersection = useCallback<IntersectionObserverCallback>(
-		(entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					const id = entry.target.getAttribute("id");
-					if (id) {
-						setActiveHash(id);
-					}
-				}
-			});
-		},
-		[setActiveHash]
-	);
+	// const handleIntersection = useCallback<IntersectionObserverCallback>(
+	// 	(entries) => {
+	// 		entries.forEach((entry) => {
+	// 			if (entry.isIntersecting) {
+	// 				const id = entry.target.getAttribute("id");
+	// 				if (id) {
+	// 					setActiveHash(id);
+	// 				}
+	// 			}
+	// 		});
+	// 	},
+	// 	[setActiveHash]
+	// );
 
-	useEffect(() => {
-		const options: IntersectionObserverInit = {
-			root: null,
-			rootMargin: "0px",
-			threshold: 1,
-		};
+	// useEffect(() => {
+	// 	const options: IntersectionObserverInit = {
+	// 		root: null,
+	// 		rootMargin: "0px",
+	// 		threshold: 1,
+	// 	};
 
-		const observer = new IntersectionObserver(handleIntersection, options);
+	// 	const observer = new IntersectionObserver(handleIntersection, options);
 
-		sectionRefs.current.forEach((section) => {
-			if (section) {
-				observer.observe(section);
-			}
-		});
+	// 	sectionRefs.current.forEach((section) => {
+	// 		if (section) {
+	// 			observer.observe(section);
+	// 		}
+	// 	});
 
-		return () => {
-			observer.disconnect();
-		};
-	}, [handleIntersection]);
+	// 	return () => {
+	// 		observer.disconnect();
+	// 	};
+	// }, [handleIntersection]);
 
 	return (
 		<AppLayout goBack>
