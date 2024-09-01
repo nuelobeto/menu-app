@@ -21,22 +21,22 @@ export const SubcategoryNavbar = ({ links }: Props) => {
 		}
 	}, [activeHash, links, setActiveHash]);
 
-	// useEffect(() => {
-	// 	const autoScroll = () => {
-	// 		setTimeout(() => {
-	// 			const activeLinkElement = document.getElementById(`${activeHash}-link`);
-	// 			if (activeLinkElement) {
-	// 				activeLinkElement.scrollIntoView({
-	// 					behavior: "smooth",
-	// 					inline: "center",
-	// 				});
-	// 				console.log(activeLinkElement);
-	// 			}
-	// 		}, 500);
-	// 	};
+	useEffect(() => {
+		const autoScroll = () => {
+			setTimeout(() => {
+				const activeLinkElement = document.getElementById(`${activeHash}-link`);
+				if (activeLinkElement) {
+					activeLinkElement.scrollIntoView({
+						behavior: "smooth",
+						inline: "center",
+					});
+					console.log(activeLinkElement);
+				}
+			}, 500);
+		};
 
-	// 	autoScroll();
-	// }, [activeHash]);
+		autoScroll();
+	}, [activeHash]);
 
 	return (
 		<nav className="sticky top-[144px] z-50">
