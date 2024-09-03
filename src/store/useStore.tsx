@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { capitalizeFirstLetter } from "@/helpers";
-import menuServices from "@/services/menuServices";
-import { MenuItemType } from "@/types";
-import { create } from "zustand";
+import { capitalizeFirstLetter } from '@/helpers';
+import menuServices from '@/services/menuServices';
+import { MenuItemType } from '@/types';
+import { create } from 'zustand';
 
 type StoreState = {
-	activeHash: string;
-	setActiveHash: (link: string) => void;
 	query: string;
 	setQuery: (query: string) => void;
 	menu: MenuItemType[];
@@ -16,15 +14,12 @@ type StoreState = {
 };
 
 const useStore = create<StoreState>((set) => ({
-	activeHash: "",
-	query: "",
+	query: '',
 	menu: [],
 	loading: false,
 	menu_details: null,
+	isScrolling: false,
 
-	setActiveHash: (link) => {
-		set({ activeHash: link });
-	},
 	setQuery: (query) => {
 		set({ query });
 	},
