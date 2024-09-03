@@ -1,15 +1,14 @@
-import { SubcategoryNavbar } from "@/components/common/subcategory-navbar";
-import { AppLayout } from "@/components/layout.tsx/app-layout";
-import { turnStringToLink } from "@/helpers";
-import { cn } from "@/lib/utils";
-import { useParams } from "react-router-dom";
-import { motion } from "framer-motion";
-import { MenuItemDetail } from "@/components/common/menu-item-detail";
-import {  useRef } from "react";
-import useStore from "@/store/useStore";
+import { SubcategoryNavbar } from '@/components/common/subcategory-navbar';
+import { AppLayout } from '@/components/layout.tsx/app-layout';
+import { turnStringToLink } from '@/helpers';
+import { cn } from '@/lib/utils';
+import { useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { MenuItemDetail } from '@/components/common/menu-item-detail';
+import useStore from '@/store/useStore';
 
 export default function Category() {
-	const {  menu } = useStore();
+	const { menu } = useStore();
 	const params = useParams();
 	const slug = params.slug;
 	const category = menu.filter(
@@ -21,8 +20,6 @@ export default function Category() {
 	const subCategories = subCategoryHeadings.map((x) =>
 		category.filter((y) => y.item_subcategory === x)
 	);
-	console.log(subCategories);
-	
 
 	const links = subCategoryHeadings.map((item) => {
 		return {
@@ -31,49 +28,12 @@ export default function Category() {
 		};
 	});
 
-	const sectionRefs = useRef<(HTMLElement | null)[]>([]);
-
-	// const handleIntersection = useCallback<IntersectionObserverCallback>(
-	// 	(entries) => {
-	// 		entries.forEach((entry) => {
-	// 			if (entry.isIntersecting) {
-	// 				const id = entry.target.getAttribute("id");
-	// 				if (id) {
-	// 					setActiveHash(id);
-	// 				}
-	// 			}
-	// 		});
-	// 	},
-	// 	[setActiveHash]
-	// );
-
-	// useEffect(() => {
-	// 	const options: IntersectionObserverInit = {
-	// 		root: null,
-	// 		rootMargin: "0px",
-	// 		threshold: 1,
-	// 	};
-
-	// 	const observer = new IntersectionObserver(handleIntersection, options);
-
-	// 	sectionRefs.current.forEach((section) => {
-	// 		if (section) {
-	// 			observer.observe(section);
-	// 		}
-	// 	});
-
-	// 	return () => {
-	// 		observer.disconnect();
-	// 	};
-	// }, [handleIntersection]);
-
 	return (
 		<AppLayout goBack>
 			<SubcategoryNavbar links={links} />
 
 			{subCategories.map((subcategory, index) => (
 				<motion.section
-					ref={(el) => (sectionRefs.current[index] = el)}
 					key={index}
 					id={turnStringToLink(subcategory[0].item_subcategory)}
 					initial={{ y: -100, opacity: 0 }}
@@ -81,11 +41,12 @@ export default function Category() {
 					viewport={{ once: true }}
 					transition={{
 						duration: 0.2,
-						type: "spring",
+						type: 'spring',
 						stiffness: 400,
 						damping: 10,
 					}}
-					className={cn("px-5 py-4 flex flex-col gap-3")}>
+					className={cn('px-5 py-4 flex flex-col gap-3')}
+				>
 					<div className="p-2.5 rounded-lg flex items-center justify-center font-semibold text-base text-emerald-50 bg-emerald-900">
 						{subcategory[0].item_subcategory}
 					</div>
@@ -95,8 +56,9 @@ export default function Category() {
 							<MenuItemDetail key={index} item={item}>
 								<motion.button
 									whileTap={{ scale: 0.9 }}
-									transition={{ type: "spring", stiffness: 400, damping: 17 }}
-									className="p-4 rounded-lg border flex flex-col gap-2 border-neutral-700 bg-neutral-800 hover:bg-neutral-800/50">
+									transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+									className="p-4 rounded-lg border flex flex-col gap-2 border-neutral-700 bg-neutral-800 hover:bg-neutral-800/50"
+								>
 									<div className="flex items-center justify-between w-full">
 										<h2 className="font-medium text-sm text-emerald-50 text-left">
 											{item.item_name}
