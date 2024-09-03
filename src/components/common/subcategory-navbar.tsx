@@ -63,9 +63,11 @@ export const SubcategoryNavbar = ({ links }: Props) => {
 		};
 
 		window.addEventListener('scrollend', autoScrollLink);
+		window.addEventListener('touchend', autoScrollLink);
 
 		return () => {
 			window.removeEventListener('scrollend', autoScrollLink);
+			window.removeEventListener('touchend', autoScrollLink);
 		};
 	}, [currentHash]);
 
