@@ -1,11 +1,11 @@
-import { SubcategoryNavbar } from '@/components/common/subcategory-navbar';
-import { AppLayout } from '@/components/layout.tsx/app-layout';
-import { turnStringToLink } from '@/helpers';
-import { cn } from '@/lib/utils';
-import { useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { MenuItemDetail } from '@/components/common/menu-item-detail';
-import useStore from '@/store/useStore';
+import { SubcategoryNavbar } from "@/components/common/subcategory-navbar";
+import { AppLayout } from "@/components/layout.tsx/app-layout";
+import { turnStringToLink } from "@/helpers";
+import { cn } from "@/lib/utils";
+import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { MenuItemDetail } from "@/components/common/menu-item-detail";
+import useStore from "@/store/useStore";
 
 export default function Category() {
 	const { menu } = useStore();
@@ -41,13 +41,12 @@ export default function Category() {
 					viewport={{ once: true }}
 					transition={{
 						duration: 0.2,
-						type: 'spring',
+						type: "spring",
 						stiffness: 400,
 						damping: 10,
 					}}
-					className={cn('px-5 py-4 flex flex-col gap-3')}
-				>
-					<div className="p-2.5 rounded-lg flex items-center justify-center font-semibold text-base text-emerald-50 bg-emerald-900">
+					className={cn("px-5 py-4 flex flex-col gap-3")}>
+					<div className="p-2.5 flex items-center justify-center font-semibold text-base text-emerald-50 bg-neutral-900">
 						{subcategory[0].item_subcategory}
 					</div>
 
@@ -56,9 +55,8 @@ export default function Category() {
 							<MenuItemDetail key={index} item={item}>
 								<motion.button
 									whileTap={{ scale: 0.9 }}
-									transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-									className="p-4 rounded-lg border flex flex-col gap-2 border-neutral-700 bg-neutral-800 hover:bg-neutral-800/50"
-								>
+									transition={{ type: "spring", stiffness: 400, damping: 17 }}
+									className="p-4 rounded-lg border flex flex-col gap-2 border-neutral-700 bg-neutral-800 hover:bg-neutral-800/50">
 									<div className="flex items-center justify-between w-full">
 										<h2 className="font-medium text-sm text-emerald-50 text-left">
 											{item.item_name}
