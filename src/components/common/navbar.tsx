@@ -40,7 +40,9 @@ export const Navbar = ({ goBack, title }: Props) => {
 					</h1>
 				</div>
 				<Menubar>
-					<MenuIcon />
+					<button>
+						<MenuIcon />
+					</button>
 				</Menubar>
 			</div>
 		</nav>
